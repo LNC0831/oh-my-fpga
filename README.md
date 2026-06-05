@@ -1,6 +1,18 @@
+<div align="center">
+
 # oh-my-fpga
 
-> Don't memorize 500 tools. Describe the chip outcome you want.
+**Don't memorize 500 tools. Describe the chip outcome you want.**
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-8A2BE2)](#install)
+[![Powered by SynthPilot](https://img.shields.io/badge/powered%20by-SynthPilot-blue)](https://synthpilot.dev)
+
+[SynthPilot MCP](https://github.com/LNC0831/SynthPilot) · [Website](https://synthpilot.dev) · [PyPI](https://pypi.org/project/synthpilot/)
+
+</div>
+
+> **English** | [简体中文](#简体中文)
 
 A **free, open** companion skill pack for the [SynthPilot](https://synthpilot.dev) MCP
 server. SynthPilot gives your AI ~500 atomic tools to drive an FPGA toolchain; **oh-my-fpga**
@@ -11,8 +23,6 @@ It's the same idea that makes [oh-my-zsh](https://ohmyz.sh) great: a thin, markd
 **strategy layer** on top of a deep capability surface. The MCP is the orchestra; these
 skills are the conductor. (The name is vendor-neutral on purpose — no EDA trademark.)
 
----
-
 ## Why this exists
 
 An AI staring at 500 flat tool names has **capability but no strategy**. Ask it to "close
@@ -20,16 +30,23 @@ timing" and it doesn't know that means: synth → read WNS → diagnose critical
 classify the failure → apply the *safe* fix → re-run → repeat. oh-my-fpga encodes that
 FPGA methodology once, in markdown, so every user gets an expert's playbook for free.
 
-Bonus: each skill is also a **demo**. Recording an AI running `/timing-closure` end-to-end
-is exactly the hero asset the website and GitHub page are missing.
+## Requires the SynthPilot MCP
 
-## Prerequisites
+These skills orchestrate the [**SynthPilot**](https://github.com/LNC0831/SynthPilot) MCP
+server — install it first:
 
-- The **SynthPilot MCP** configured in your AI client (`pip install synthpilot` → `synthpilot install`)
+- `pip install synthpilot` → `synthpilot install` (see [synthpilot.dev](https://synthpilot.dev))
 - Vivado open with the SynthPilot Tcl server running (port 9999)
 - A Claude Code client (skills are a Claude Code feature; see *Other clients* below)
 
 ## Install
+
+**Plugin (recommended):** install the whole pack as a Claude Code plugin —
+
+```
+/plugin marketplace add LNC0831/oh-my-fpga
+/plugin install oh-my-fpga
+```
 
 **Per-project:** copy a skill folder into your project's `.claude/skills/`:
 ```
@@ -38,13 +55,6 @@ your-project/.claude/skills/timing-closure/SKILL.md
 Then just say *"close timing"* or invoke `/timing-closure`.
 
 **Global:** drop the folders into `~/.claude/skills/` to use them everywhere.
-
-**Plugin (recommended):** install the whole pack as a Claude Code plugin —
-
-```
-/plugin marketplace add LNC0831/oh-my-fpga
-/plugin install oh-my-fpga
-```
 
 ## The skills (v1 — 13)
 
@@ -95,9 +105,105 @@ grow continuously.
 
 Skills are a Claude Code mechanism. For other MCP clients, the same workflows can ship as
 **MCP prompts** (`@mcp.prompt()` in the SynthPilot server) — client-agnostic slash-command
-templates. Candidate follow-up so the methodology layer isn't Claude-Code-only.
+templates. A candidate follow-up so the methodology layer isn't Claude-Code-only.
 
 ## License
 
-Open source (MIT proposed) — free forever. This pack is top-of-funnel for the SynthPilot
-MCP; keeping it open and ungated is the point.
+[MIT](LICENSE) — free forever. oh-my-fpga is the open companion to the
+[SynthPilot](https://synthpilot.dev) MCP; keeping it open and ungated is the point.
+
+---
+
+<a name="简体中文"></a>
+
+## 简体中文
+
+**别去记 500 个工具,直接说出你想要的芯片结果。**
+
+这是 [SynthPilot](https://synthpilot.dev) MCP 服务器的一个**免费开源**配套 skill 包。
+SynthPilot 给你的 AI 约 500 个原子工具来驱动 FPGA 工具链;**oh-my-fpga** 给它**方法论**
+——一组命名的、有主见的工作流,把这些原子能力变成一句话的结果("收敛时序""审查 CDC"
+"搭一个 Zynq SoC")。
+
+这正是 [oh-my-zsh](https://ohmyz.sh) 之所以好用的思路:在深厚的能力面之上,叠一层薄薄的、
+纯 markdown 的**策略层**。MCP 是乐队,这些 skill 是指挥。(名字刻意不含 EDA 厂商商标。)
+
+### 为什么需要它
+
+一个 AI 面对 500 个扁平的工具名,**有能力却没策略**。让它"收敛时序",它并不知道这意味着:
+综合 → 读 WNS → 诊断关键路径 → 给违例分类 → 施加*安全*的修复 → 重跑 → 循环。oh-my-fpga
+把这套 FPGA 方法论用 markdown 编码一次,于是每个用户都免费拿到一份专家级 playbook。
+
+### 需要 SynthPilot MCP
+
+这些 skill 编排的是 [**SynthPilot**](https://github.com/LNC0831/SynthPilot) MCP 服务器,
+请先安装它:
+
+- `pip install synthpilot` → `synthpilot install`(见 [synthpilot.dev](https://synthpilot.dev))
+- Vivado 打开,且 SynthPilot Tcl 服务器在运行(端口 9999)
+- 一个 Claude Code 客户端(skill 是 Claude Code 的特性;其他客户端见下方)
+
+### 安装
+
+**插件(推荐)**:把整包作为 Claude Code 插件安装——
+
+```
+/plugin marketplace add LNC0831/oh-my-fpga
+/plugin install oh-my-fpga
+```
+
+**按项目**:把某个 skill 文件夹复制进项目的 `.claude/skills/`:
+```
+your-project/.claude/skills/timing-closure/SKILL.md
+```
+然后直接说*"收敛时序"*或调用 `/timing-closure`。
+
+**全局**:把文件夹放进 `~/.claude/skills/`,所有项目可用。
+
+### 包含的 skill(v1 — 13 个)
+
+| Skill | 说一句… | 作用 |
+|---|---|---|
+| **`timing-closure`** | "收敛时序""修 WNS" | 综合/实现 → 取指标 → 分析关键路径 → 分类 → 最小安全的约束/策略修复 → 循环到 WNS≥0 |
+| **`cdc-audit`** | "查跨时钟域" | 枚举每个时钟交叉 → 结构分类 → 同步器 / `set_clock_groups` / `set_bus_skew`(绝不把真实交叉一笔勾销) |
+| **`constraints-authoring`** | "写 XDC""还没有约束" | 从零写主时钟/生成时钟、I/O 延迟、例外,并用 `check_timing` 验证 |
+| **`full-flow-demo`** | "RTL 到 bitstream""端到端" | 工程 → lint → 仿真 → 综合 → 实现 → 出 bitstream,每阶段设检查点 |
+| **`sim-bringup`** | "跑仿真""跑 testbench" | `sim_compile` → `sim_run` → 从输出定位失败 |
+| **`coverage-closure`** | "代码覆盖率" | 带覆盖率编译 → `sim_get_coverage` → 针对性补盲区 |
+| **`lint-triage`** | "查 RTL""代码质量" | 全量 lint → 按严重度分类 → 修复或**有理由的** waiver |
+| **`qor-report`** | "设计健康度""QoR" | 利用率+时序+功耗+拥塞+建议 → 一页评分卡 |
+| **`utilization-reduction`** | "LUT 不够了""塞不下" | 层级利用率 → 找最大占用 → IP/策略/RTL 杠杆 |
+| **`power-optimization`** | "降功耗" | 功耗拆解 → 时钟门控/策略/活动率杠杆 |
+| **`zynq-bringup`** | "搭 Zynq SoC""PS7" | PS7 框图 → 自动化 → AXI 外设 → 地址映射 → 验证 → wrapper |
+| **`ila-hw-debug`** | "上板调试""抓波形" | 插入/连接 ILA → 烧录 → 触发 → 读回波形 |
+| **`bitstream-program`** | "烧板子""刷 flash" | 出 bitstream → 烧录器件 / SPI flash |
+
+### 它们是怎么造出来的(以及如何扩展)
+
+每个 skill 都是**机器生成、再经对抗式审查**的。生成器(一个多 agent 的 skill 工厂)把每个
+主题送过 **author → 对抗式 verify(查幻觉工具名 + 方法论 + 安全) → revise → 独立终审**,
+由一个*独立*的审查者签字放行。工具名会对照真实的 SynthPilot 工具目录校验,所以 skill 绝不会
+引用一个不存在的工具。
+
+工厂在这次构建中就抓到了一个真实硬件 bug:`zynq-bringup` 的草稿让 agent 用 `set_polarity`
+去修 `proc_sys_reset` 的 `ext_reset_in` 极性不匹配,但该工具只控制*辅助*复位——发布前已修正。
+
+要加 skill:往工厂的目录里追加主题再重跑。这个包就是用来持续生长的。
+
+### 设计原则(由终审 gate 强制)
+
+1. **先验证**。没有新鲜的工具输出做证据,绝不声称"时序已收敛""CDC 干净"(签核类声明需 post-impl 证据)。
+2. **绝不假装通过**。不为了让数字变绿而消音/waive 真实的违例/DRC/lint/CDC。施加例外必须先声明假设并征求确认。
+3. **最小安全改动优先**。约束/策略先于 RTL;RTL 改动只建议、不偷偷做。
+4. **暴露权衡后停手**。安全选项用尽时,列出各选项及代价交还人类,不空转。
+
+### 其他客户端(Cursor / Cline / Claude Desktop)
+
+skill 是 Claude Code 的机制。对其他 MCP 客户端,同样的工作流可以做成 **MCP prompts**
+(在 SynthPilot 服务端用 `@mcp.prompt()`)——客户端无关的斜杠命令模板。这是后续候选项,
+让方法论层不只服务 Claude Code。
+
+### 授权
+
+[MIT](LICENSE) —— 永久免费。oh-my-fpga 是 [SynthPilot](https://synthpilot.dev) MCP 的开源
+配套;保持开源、不设门槛,正是它的意义。
