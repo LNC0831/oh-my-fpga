@@ -1,0 +1,36 @@
+{
+  "name": "oh-my-fpga",
+  "version": "0.1.0",
+  "description": "FPGA-development skills for the SynthPilot MCP — named, verified workflows (timing closure, CDC audit, full flow, Zynq bring-up, lint, QoR, coverage, ILA debug…) that turn ~500 atomic Vivado tools into one-sentence outcomes.",
+  "author": {
+    "name": "SynthPilot"
+  },
+  "repository": "https://github.com/LNC0831/oh-my-fpga",
+  "homepage": "https://github.com/LNC0831/oh-my-fpga",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "skills",
+    "fpga",
+    "vivado",
+    "eda",
+    "mcp",
+    "synthpilot"
+  ],
+  "skills": [
+    "./skills/timing-closure/",
+    "./skills/cdc-audit/",
+    "./skills/constraints-authoring/",
+    "./skills/full-flow-demo/",
+    "./skills/sim-bringup/",
+    "./skills/coverage-closure/",
+    "./skills/lint-triage/",
+    "./skills/qor-report/",
+    "./skills/utilization-reduction/",
+    "./skills/power-optimization/",
+    "./skills/zynq-bringup/",
+    "./skills/ila-hw-debug/",
+    "./skills/bitstream-program/"
+  ]
+}

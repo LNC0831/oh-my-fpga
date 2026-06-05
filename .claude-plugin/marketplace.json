@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "oh-my-fpga",
+  "description": "Open FPGA-development skill pack for the SynthPilot MCP",
+  "owner": {
+    "name": "SynthPilot"
+  },
+  "plugins": [
+    {
+      "name": "oh-my-fpga",
+      "description": "Named, verified FPGA workflows (timing closure, CDC audit, full flow, Zynq bring-up, lint, QoR, coverage, ILA debug…) on top of the SynthPilot MCP. Don't memorize 500 tools — describe the chip outcome you want.",
+      "version": "0.1.0",
+      "author": {
+        "name": "SynthPilot"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/LNC0831/oh-my-fpga",
+      "tags": [
+        "fpga",
+        "vivado",
+        "eda",
+        "skills",
+        "synthpilot",
+        "mcp"
+      ]
+    }
+  ],
+  "version": "0.1.0"
+}
