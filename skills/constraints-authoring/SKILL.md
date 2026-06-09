@@ -1,4 +1,4 @@
-<![CDATA[---
+---
 name: constraints-authoring
 description: >
   Author a correct Vivado XDC timing constraint set from scratch — primary
@@ -384,4 +384,3 @@ Return a concise, evidence-backed report:
 > and verified against the synthesized netlist. This means timing is now correctly
 > DEFINED — it does not mean timing is MET. Any async clock groups I added assume a
 > working CDC synchronizer exists; verify with cdc-analysis before signoff."*
-]]>

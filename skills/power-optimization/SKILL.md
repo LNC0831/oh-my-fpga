@@ -1,4 +1,4 @@
-<![CDATA[---
+---
 name: power-optimization
 description: >
   Analyze and reduce dynamic and static power on a Xilinx Vivado design (total
@@ -254,4 +254,3 @@ Produce a concise power report, not a narrative:
 6. **Caveat:** if numbers are vectorless Low/Medium confidence, state that
    dynamic-power figures are estimates and signoff requires a SAIF-annotated
    re-measure.
-]]>

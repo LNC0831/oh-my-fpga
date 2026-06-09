@@ -35,7 +35,7 @@ FPGA methodology once, in markdown, so every user gets an expert's playbook for 
 These skills orchestrate the [**SynthPilot**](https://github.com/LNC0831/SynthPilot) MCP
 server — install it first:
 
-- `pip install synthpilot` → `synthpilot install` (see [synthpilot.dev](https://synthpilot.dev))
+- `uv tool install synthpilot` → `synthpilot setup` (one guided command: Vivado + license + MCP — see [synthpilot.dev](https://synthpilot.dev))
 - Vivado open with the SynthPilot Tcl server running (port 9999)
 - A Claude Code client (skills are a Claude Code feature; see *Other clients* below)
 
@@ -79,9 +79,10 @@ Then just say *"close timing"* or invoke `/timing-closure`.
 Every skill is **machine-generated, then adversarially audited**. The generator (a
 multi-agent skill factory) runs each topic through
 **author → adversarial verify (hallucinated-tool + methodology + safety check) →
-revise → independent final-audit**, where a *separate* reviewer must sign off. Tool names
-are validated against the real SynthPilot catalog, so skills never reference a tool that
-doesn't exist.
+revise → independent final-audit**, where a *separate* reviewer must sign off. A
+deterministic check (zero-LLM) also validates each skill's required sections and cross-checks
+every tool name against a freshly-introspected catalog of the live SynthPilot tools — so a
+skill can never reference a tool that doesn't exist.
 
 The factory already caught a real hardware bug during this build: a `zynq-bringup` draft
 told the agent to fix a `proc_sys_reset` `ext_reset_in` polarity mismatch with
@@ -103,9 +104,10 @@ grow continuously.
 
 ## Other clients (Cursor / Cline / Claude Desktop)
 
-Skills are a Claude Code mechanism. For other MCP clients, the same workflows can ship as
-**MCP prompts** (`@mcp.prompt()` in the SynthPilot server) — client-agnostic slash-command
-templates. A candidate follow-up so the methodology layer isn't Claude-Code-only.
+Skills are a Claude Code mechanism. For every other MCP client, the **same 13 workflows
+ship as MCP prompts** built into the SynthPilot server (1.3.0+) — the prompt body *is* the
+skill body (one source, no drift), so Cursor / Codex / Claude Desktop get the methodology
+layer too. Pick them from your client's prompt (`/`) menu.
 
 ## License
 
@@ -139,7 +141,7 @@ SynthPilot 给你的 AI 约 500 个原子工具来驱动 FPGA 工具链;**oh-my-
 这些 skill 编排的是 [**SynthPilot**](https://github.com/LNC0831/SynthPilot) MCP 服务器,
 请先安装它:
 
-- `pip install synthpilot` → `synthpilot install`(见 [synthpilot.dev](https://synthpilot.dev))
+- `uv tool install synthpilot` → `synthpilot setup`(一条命令搞定 Vivado + 授权 + MCP——见 [synthpilot.dev](https://synthpilot.dev))
 - Vivado 打开,且 SynthPilot Tcl 服务器在运行(端口 9999)
 - 一个 Claude Code 客户端(skill 是 Claude Code 的特性;其他客户端见下方)
 
@@ -182,7 +184,8 @@ your-project/.claude/skills/timing-closure/SKILL.md
 
 每个 skill 都是**机器生成、再经对抗式审查**的。生成器(一个多 agent 的 skill 工厂)把每个
 主题送过 **author → 对抗式 verify(查幻觉工具名 + 方法论 + 安全) → revise → 独立终审**,
-由一个*独立*的审查者签字放行。工具名会对照真实的 SynthPilot 工具目录校验,所以 skill 绝不会
+由一个*独立*的审查者签字放行。还有一道确定性检查(零 LLM)校验每个 skill 的必需小节,并把
+每个工具名对照一份**实时 introspect 出来的** SynthPilot 工具目录核对——所以 skill 绝不会
 引用一个不存在的工具。
 
 工厂在这次构建中就抓到了一个真实硬件 bug:`zynq-bringup` 的草稿让 agent 用 `set_polarity`
@@ -199,9 +202,9 @@ your-project/.claude/skills/timing-closure/SKILL.md
 
 ### 其他客户端(Cursor / Cline / Claude Desktop)
 
-skill 是 Claude Code 的机制。对其他 MCP 客户端,同样的工作流可以做成 **MCP prompts**
-(在 SynthPilot 服务端用 `@mcp.prompt()`)——客户端无关的斜杠命令模板。这是后续候选项,
-让方法论层不只服务 Claude Code。
+skill 是 Claude Code 的机制。对其他每一个 MCP 客户端,**这 13 个工作流会作为 MCP prompts
+内置在 SynthPilot 服务端(1.3.0+)**——prompt 正文就是 skill 正文(同一份源、不漂移),
+于是 Cursor / Codex / Claude Desktop 也能拿到方法论层。在客户端的提示(`/`)菜单里选用。
 
 ### 授权
 
